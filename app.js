@@ -45,19 +45,20 @@ function playRound(humanChoice) {
 }
 
 function printWinner() {
+    const finalResultElement = document.createElement("h1");
+    const resultsContainer = document.querySelector("#results-container");
+    let finalResult = "";
+
     if (humanScore == computerScore) {
-        console.log(
-            `Game Over! It's a Tie! Your Score: ${humanScore} Computer Score: ${computerScore}`
-        );
+        finalResult = `Game Over! It's a Tie! Your Score: ${humanScore} Computer Score: ${computerScore}`;
     } else if (humanScore > computerScore) {
-        console.log(
-            `Game Over! You Win! Your Score: ${humanScore} Computer Score: ${computerScore}`
-        );
+        finalResult = `Game Over! You Win! Your Score: ${humanScore} Computer Score: ${computerScore}`;
     } else {
-        console.log(
-            `Game Over! You Lose! Your Score: ${humanScore} Computer Score: ${computerScore}`
-        );
+        finalResult = `Game Over! You Lose! Your Score: ${humanScore} Computer Score: ${computerScore}`;
     }
+
+    finalResultElement.textContent = finalResult;
+    resultsContainer.appendChild(finalResultElement);
 }
 
 function disableButtons() {
