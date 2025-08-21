@@ -14,12 +14,8 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
-function getHumanChoice() {
-    let userInput = prompt("Choose rock, paper, or scissors:").toLowerCase();
-    return userInput;
-}
-
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
+    const computerChoice = getComputerChoice();
     let difference = choicesPoints[humanChoice] - choicesPoints[computerChoice];
     const resultsContainer = document.querySelector("#results-container");
     let result = document.createElement("h2");
@@ -38,6 +34,14 @@ function playRound(humanChoice, computerChoice) {
     }
 
     resultsContainer.appendChild(result);
+    const scores = document.createElement("h2");
+    scores.textContent = `Your Score: ${humanScore} Computer Score: ${computerScore}`;
+    resultsContainer.appendChild(scores);
+
+    if (humanScore === 5 || computerScore === 5) {
+        printWinner();
+        disableButtons();
+    }
 }
 
 function printWinner() {
@@ -56,30 +60,25 @@ function printWinner() {
     }
 }
 
-function playGame() {
-    // let roundsPlayed = 0;
-    let computerChoice;
-    // while (roundsPlayed < 5) {
-    //     humanChoice = getHumanChoice();
-    //     computerChoice = getComputerChoice();
-    //     playRound(humanChoice, computerChoice);
-    //     roundsPlayed += 1;
-    // }
-    // printWinner();
+function disableButtons() {
+    document.querySelector("#rock").disabled = true;
+    document.querySelector("#paper").disabled = true;
+    document.querySelector("#scissors").disabled = true;
+}
 
+function playGame() {
     const rockBtn = document.querySelector("#rock");
     const paperBtn = document.querySelector("#paper");
     const scissorsBtn = document.querySelector("#scissors");
 
-    computerChoice = getComputerChoice();
     rockBtn.addEventListener("click", () => {
-        playRound("rock", computerChoice);
+        playRound("rock");
     });
     paperBtn.addEventListener("click", () => {
-        playRound("paper", computerChoice);
+        playRound("paper");
     });
     scissorsBtn.addEventListener("click", () => {
-        playRound("scissors", computerChoice);
+        playRound("scissors");
     });
 }
 
