@@ -21,18 +21,23 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
     let difference = choicesPoints[humanChoice] - choicesPoints[computerChoice];
+    const resultsContainer = document.querySelector("#results-container");
+    let result = document.createElement("h2");
 
     if (difference == -1 || difference == 2) {
-        console.log(`You Win!, ${humanChoice} beats ${computerChoice}`);
+        result.textContent = `You Win!, ${humanChoice} beats ${computerChoice}`;
+
         humanScore += 1;
     } else if (difference == 0) {
-        console.log(`It's a Tie!, you both picked ${humanChoice}`);
+        result.textContent = `It's a Tie!, you both picked ${humanChoice}`;
         humanScore += 1;
         computerScore += 1;
     } else {
-        console.log(`You Lose!, ${computerChoice} beats ${humanChoice}`);
+        result.textContent = `You Lose!, ${computerChoice} beats ${humanChoice}`;
         computerScore += 1;
     }
+
+    resultsContainer.appendChild(result);
 }
 
 function printWinner() {
@@ -65,6 +70,7 @@ function playGame() {
     const rockBtn = document.querySelector("#rock");
     const paperBtn = document.querySelector("#paper");
     const scissorsBtn = document.querySelector("#scissors");
+
     computerChoice = getComputerChoice();
     rockBtn.addEventListener("click", () => {
         playRound("rock", computerChoice);
