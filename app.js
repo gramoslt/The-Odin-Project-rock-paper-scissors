@@ -52,19 +52,29 @@ function printWinner() {
 }
 
 function playGame() {
-    let roundsPlayed = 0;
-    let humanChoice, computerChoice;
+    // let roundsPlayed = 0;
+    let computerChoice;
+    // while (roundsPlayed < 5) {
+    //     humanChoice = getHumanChoice();
+    //     computerChoice = getComputerChoice();
+    //     playRound(humanChoice, computerChoice);
+    //     roundsPlayed += 1;
+    // }
+    // printWinner();
 
-    while (roundsPlayed < 5) {
-        humanChoice = getHumanChoice();
-        computerChoice = getComputerChoice();
-
-        playRound(humanChoice, computerChoice);
-
-        roundsPlayed += 1;
-    }
-
-    printWinner();
+    const rockBtn = document.querySelector("#rock");
+    const paperBtn = document.querySelector("#paper");
+    const scissorsBtn = document.querySelector("#scissors");
+    computerChoice = getComputerChoice();
+    rockBtn.addEventListener("click", () => {
+        playRound("rock", computerChoice);
+    });
+    paperBtn.addEventListener("click", () => {
+        playRound("paper", computerChoice);
+    });
+    scissorsBtn.addEventListener("click", () => {
+        playRound("scissors", computerChoice);
+    });
 }
 
 playGame();
